@@ -46,7 +46,12 @@ router.post("", checkAuth, multer({storage: storage}).single("image"),(req,res,n
         imagePath: createdPost.imagePath,
       }
     });
-  });
+  })
+    .catch(error => {
+      res.status(500).json({
+        message: "Creating a post failed!"
+      });
+    });
 });
 
 router.put("/:id", checkAuth, multer({storage: storage}).single("image"),(req,res,next) => {
@@ -72,7 +77,12 @@ router.put("/:id", checkAuth, multer({storage: storage}).single("image"),(req,re
         message: 'Not authorized!',
       });
     }
-  });
+  })
+    .catch(error => {
+      res.status(500).json({
+        message: "Couldn't update post!"
+      });
+    });
 });
 
 router.get("",(req,res,next) => {
@@ -85,7 +95,6 @@ router.get("",(req,res,next) => {
       .skip(pagesize * (currentpage - 1))
       .limit(pagesize);
   }
-
   postQuery
     .then((documents)=>{
       fetchedPosts = documents;
@@ -96,35 +105,48 @@ router.get("",(req,res,next) => {
         posts: fetchedPosts,
         maxPosts: count
       });
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: "Fetching posts failed!"
+      });
     });
-
 });
 
 router.get("/:id", (req, res, next) => {
   Post.findById(req.params.id)
-    .then((post)=>{
-      if (post){
+    .then((post) => {
+      if (post) {
         res.status(200).json(post);
-      }else {
+      } else {
         res.status(404).json({
           message: 'Post not found!',
         });
       }
+    }).catch(error => {
+    res.status(500).json({
+      message: "Fetching post failed!"
     });
+  });
 });
 
 router.delete("/:id", checkAuth, (req, res, next) => {
-  Post.deleteOne({ _id: req.params.id, creator: req.userData.userId }).then(result => {
-    if(result.n > 0) {
+  Post.deleteOne({_id: req.params.id, creator: req.userData.userId}).then(result => {
+    if (result.n > 0) {
       res.status(200).json({
         message: "Post deleted!"
       });
-    }else{
+    } else {
       res.status(401).json({
         message: 'Not authorized!',
       });
     }
-  });
+  })
+    .catch(error => {
+      res.status(500).json({
+        message: "Fetching posts failed!"
+      });
+    });
 });
 
 module.exports = router;
