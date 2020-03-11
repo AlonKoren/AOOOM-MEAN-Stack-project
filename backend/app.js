@@ -8,8 +8,7 @@ const userRoutes = require("./routes/user");
 
 const app = express();
 
-mongoose.connect("mongodb+srv://alon:bomSeALXCrJOrbkW@cluster0-ypci1.mongodb.net/node-angular",
-// mongoose.connect("mongodb+srv://alon:bomSeALXCrJOrbkW@cluster0-ypci1.mongodb.net/node-angular?retryWrites=true&w=majority",
+mongoose.connect("mongodb+srv://alon:" + process.env.MONGO_ATLAS_PASSWORD + "@cluster0-ypci1.mongodb.net/node-angular",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -40,7 +39,3 @@ app.use("/api/posts", postsRoutes);
 app.use("/api/user", userRoutes);
 
 module.exports = app;
-
-// alon
-// bomSeALXCrJOrbkW
-// mongodb+srv://alon:<password>@cluster0-ypci1.mongodb.net/test?retryWrites=true&w=majority
