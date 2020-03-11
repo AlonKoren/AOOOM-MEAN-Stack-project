@@ -3,8 +3,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import {AngularMaterialModule} from './angular-material.module';
 import {PostsModule} from './posts/posts.module';
-import {AuthModule} from './auth/auth.module';
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,8 +25,6 @@ import {ErrorComponent} from './error/error.component';
     HttpClientModule,
     AngularMaterialModule,
     PostsModule,
-    AuthModule
-
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
