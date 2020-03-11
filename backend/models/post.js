@@ -12,5 +12,10 @@ const postScheme = mongoose.Schema({
     type: String,
     required: true
   },
+  creator: {
+    type: mongoose.Schema.Types.ObjectId,
+    red: "User",
+    required: true
+  },
 });
 module.exports = mongoose.model('Post', postScheme);
