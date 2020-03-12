@@ -1,14 +1,17 @@
 const Post = require('../models/post');
 const Comment = require("../models/comment");
 
-
+//creat post function
 exports.createPost = (req,res,next) => {
   const url = req.protocol + "://" + req.get("host");
+
   const post = new Post({
     title: req.body.title,
     content: req.body.content,
     imagePath:url + "/images/"+req.file.filename,
-    creator: req.userData.userId
+    creator: req.userData.userId,
+    userName: req.userData.email.split('@')[0],
+    postDate: new Date(),
   });
   post.save().then(createdPost =>{
     res.status(201).json({
@@ -18,6 +21,8 @@ exports.createPost = (req,res,next) => {
         title: createdPost.title,
         content: createdPost.content,
         imagePath: createdPost.imagePath,
+        userName: createdPost.userName,
+        postDate: createdPost.postDate,
       }
     });
   })
@@ -28,6 +33,7 @@ exports.createPost = (req,res,next) => {
     });
 };
 
+//update post function
 exports.updatePost = (req,res,next) => {
   let imagePath = req.body.imagePath;
   if (req.file){
@@ -39,7 +45,8 @@ exports.updatePost = (req,res,next) => {
     title: req.body.title,
     content: req.body.content,
     imagePath: imagePath,
-    creator: req.userData.userId
+    creator: req.userData.userId,
+    userName: req.userData.email.split('@')[0],
   });
   Post.updateOne({_id: req.params.id, creator: req.userData.userId },post).then(result =>{
     if(result.n > 0) {

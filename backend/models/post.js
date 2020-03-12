@@ -17,5 +17,13 @@ const postScheme = mongoose.Schema({
     red: "User",
     required: true
   },
+  userName: {
+    type: String,
+    required: true
+  },
+  postDate: {
+    type: Date,
+    required: true
+  },
 });
 module.exports = mongoose.model('Post', postScheme);

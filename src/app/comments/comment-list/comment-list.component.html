@@ -10,7 +10,7 @@
     <mat-list-item>
       <mat-panel-description matLine>
         Commented By : {{ comment.userName }}
-<!--        <br>On : {{ comment.commentDate }}-->
+        <br>Posted on : {{ comment.commentDate.substring(0,10) }} at {{ comment.commentDate.substring(11,19) }}
       </mat-panel-description>
       <p matLine>{{ comment.content }}</p>
 <!--      <mat-action-row matLine *ngIf="userIsAuth && userId == comment.creator">-->

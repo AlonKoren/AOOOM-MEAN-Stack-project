@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
 
+//signUp function
 exports.createUser = (req, res, next) => {
   bcrypt.hash(req.body.password, 10).then(hash =>{
     const user = new User({
@@ -25,12 +26,13 @@ exports.createUser = (req, res, next) => {
   });
 };
 
+//Login function
 exports.userLogin = (req, res, next) => {
   let fetchedUser;
   User.findOne({ email: req.body.email }).then(user =>{
     if(!user){
       return res.status(401).json({
-        message: 'Auth failed1'
+        message: 'Auth failed!'
       });
     }
     fetchedUser = user;
@@ -39,7 +41,7 @@ exports.userLogin = (req, res, next) => {
     .then(result=>{
       if (!result){
         return res.status(401).json({
-          message: 'Auth failed2',
+          message: 'Auth failed!!',
         });
       }
       const token = jwt.sign(
