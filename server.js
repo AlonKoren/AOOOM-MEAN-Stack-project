@@ -18,6 +18,8 @@ const normalizePort = val => {
   return false;
 };
 
+
+
 const onError = error => {
   if (error.syscall !== "listen") {
     throw error;
@@ -47,6 +49,22 @@ const port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
 
 const server = http.createServer(app);
+const io = require('socket.io').listen(server);
+
+io.on('connection', (socket)=> {
+  socket.on('join',(data)=>{
+    socket.join(data.room);
+    socket.broadcast.to(data.room).emit('new user joined',{user : data.user , message: 'has joined the room'});
+  });
+  socket.on('leave',(data)=>{
+    socket.leave(data.room);
+    socket.broadcast.to(data.room).emit('left room',{user : data.user, message: 'left the room'});
+  });
+  socket.on('message',data => {
+    io.in(data.room).emit('new message',{user: data.user, message: data.message});
+  });
+});
+
 server.on("error", onError);
 server.on("listening", onListening);
 server.listen(port);

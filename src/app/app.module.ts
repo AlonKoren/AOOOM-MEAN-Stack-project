@@ -12,6 +12,7 @@ import {AuthInterceptor} from './auth/auth-interceptor';
 import {ErrorInterceptor} from './error-interceptor';
 import {ErrorComponent} from './error/error.component';
 import {CommentsModule} from './comments/comments.module';
+import {WebSocketModule} from './web-socket/web.socket.module';
 
 @NgModule({
     declarations: [
@@ -27,6 +28,7 @@ import {CommentsModule} from './comments/comments.module';
     AngularMaterialModule,
     PostsModule,
     CommentsModule,
+    WebSocketModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
