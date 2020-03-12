@@ -1,0 +1,27 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div class="form-group">
+  <label>
+    <input type="text" class="form-control" placeholder="Search By Content" [(ngModel)]="searchTermByContent" />
+  </label>
+</div>
+<mat-accordion multi="true" *ngIf="comments.length > 0 && !isLoading">
+
+  <mat-list dense *ngFor="let comment of comments.slice().reverse() |  commentContentFilter:searchTermByContent">
+    <mat-list-item>
+      <mat-panel-description matLine>
+        Commented By : {{ comment.userName }}
+<!--        <br>On : {{ comment.commentDate }}-->
+      </mat-panel-description>
+      <p matLine>{{ comment.content }}</p>
+<!--      <mat-action-row matLine *ngIf="userIsAuth && userId == comment.creator">-->
+<!--        <a mat-button color="primary" [routerLink]="['/comments/edit', comment.id]">EDIT</a>-->
+<!--        <button mat-button color="warn" (click)="onDelete(comment.id)">DELETE</button>-->
+<!--      </mat-action-row>-->
+      <mat-divider></mat-divider>
+    </mat-list-item>
+
+  </mat-list>
+</mat-accordion>
+<mat-paginator [length]="totoalComments" [pageSize]="commentsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangePage($event)" *ngIf="comments.length > 0"></mat-paginator>
+
+<p class="info-text mat-body-1" *ngIf="comments.length <= 0 && !isLoading">No comments added yet!</p>
