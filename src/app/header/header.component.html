@@ -1,7 +1,25 @@
+<header>
 <mat-toolbar color="primary">
-  <span>
-    <a routerLink="/">AOOOM</a>
-  </span>
+    <span>
+      <a>AOOOM&nbsp;&nbsp;&nbsp;&nbsp;</a>
+    </span>
+  <ul>
+    <li>
+      <a mat-button routerLink="/">Posts List</a>
+    </li>
+  </ul>
+
+<!--   <span *ngIf="userIsAuthenticated">-->
+<!--      AOOOM-->
+<!--    </span>-->
+<!--  <span class="spacer"></span>-->
+<!--  <span>-->
+<!--      <a routerLink="/">Posts List</a>-->
+<!--    </span>-->
+
+<!--  <span>-->
+<!--    <a routerLink="/">AOOOM</a>-->
+<!--  </span>-->
   <span class="spacer"></span>
   <ul>
     <li *ngIf="userIsAuthenticated">
@@ -18,3 +36,4 @@
     </li>
   </ul>
 </mat-toolbar>
+</header>
