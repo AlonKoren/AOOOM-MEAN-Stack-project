@@ -8,7 +8,10 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CommentContentFilterPipe } from './comment-content-filter.pipe';
 import {MatListModule} from '@angular/material/list';
-
+import {CommentNameFilterPipe} from './comment-name-filter.pipe';
+import {CommentDateFilterPipe} from './comment-date-filter.pipe';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 
 @NgModule({
@@ -16,6 +19,8 @@ import {MatListModule} from '@angular/material/list';
     CommentCreateComponent,
     CommentListComponent,
     CommentContentFilterPipe,
+    CommentNameFilterPipe,
+    CommentDateFilterPipe,
   ],
   imports: [
     CommonModule,
@@ -23,7 +28,9 @@ import {MatListModule} from '@angular/material/list';
     FormsModule,
     AngularMaterialModule,
     RouterModule,
-    MatListModule
+    MatListModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 

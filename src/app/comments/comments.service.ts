@@ -29,7 +29,7 @@ export class CommentsService {
               id: comment._id,
               creator: comment.creator,
               userName: comment.userName,
-              commentDate: comment.commentDate,
+              commentDate: new Date(comment.commentDate),
               postId: comment.postId
             };
           }),
@@ -55,7 +55,7 @@ export class CommentsService {
               id: comment._id,
               creator: comment.creator,
               userName: comment.userName,
-              commentDate: comment.commentDate,
+              commentDate: new Date(comment.commentDate),
               postId: comment.postId
             };
           }),

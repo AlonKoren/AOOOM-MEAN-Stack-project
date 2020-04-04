@@ -5,5 +5,5 @@ export interface Comment {
   creator: string;
   postId: string;
   userName: string;
-  commentDate: string;
+  commentDate: Date;
 }

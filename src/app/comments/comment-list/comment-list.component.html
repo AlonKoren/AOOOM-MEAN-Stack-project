@@ -1,16 +1,26 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 <div class="form-group">
   <label>
-    <input type="text" class="form-control" placeholder="Search By Content" [(ngModel)]="searchTermByContent" />
+    Search By Content <input type="text" class="form-control" placeholder="" [(ngModel)]="searchTermByContent" />
+    <br>
+    Search By Name <input type="text" class="form-control" placeholder="" [(ngModel)]="searchTermByName" />
+    <br>
+    Search By Date
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="searchTermByDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
   </label>
 </div>
 <mat-accordion multi="true" *ngIf="comments.length > 0 && !isLoading">
 
-  <mat-list dense *ngFor="let comment of comments.slice().reverse() |  commentContentFilter:searchTermByContent">
+  <mat-list dense *ngFor="let comment of comments.slice().reverse() |  commentContentFilter:searchTermByContent | commentNameFilter:searchTermByName | commentDateFilter:searchTermByDate">
     <mat-list-item>
       <mat-panel-description matLine>
         Commented By : {{ comment.userName }}
-        <br>Posted on : {{ comment.commentDate.substring(0,10) }} at {{ comment.commentDate.substring(11,19) }}
+        <br>
+        Posted on : {{ comment.commentDate.toLocaleDateString() | date: 'dd/MM/yyyy'}} at {{comment.commentDate.toLocaleTimeString()}}
       </mat-panel-description>
       <p matLine>{{ comment.content }}</p>
 <!--      <mat-action-row matLine *ngIf="userIsAuth && userId == comment.creator">-->

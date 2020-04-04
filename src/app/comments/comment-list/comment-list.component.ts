@@ -6,12 +6,22 @@ import { CommentsService } from '../comments.service';
 import { PageEvent } from '@angular/material/paginator';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import {DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
+import {APP_DATE_FORMATS, AppDateAdapter} from '../date.adapter';
 
 
 @Component({
   selector: 'app-comment-list',
   templateUrl: './comment-list.component.html',
-  styleUrls: ['./comment-list.component.css']
+  styleUrls: ['./comment-list.component.css'],
+  providers: [
+    {
+      provide: DateAdapter, useClass: AppDateAdapter
+    },
+    {
+      provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
+    }
+  ]
 })
 
 export class CommentListComponent implements OnInit, OnDestroy {
@@ -30,6 +40,8 @@ export class CommentListComponent implements OnInit, OnDestroy {
   postId: string;
 
   searchTermByContent: string;
+  searchTermByName: string;
+  searchTermByDate: Date;
 
   constructor(public commentsService: CommentsService, public route: ActivatedRoute, private authService: AuthService) { }
 
