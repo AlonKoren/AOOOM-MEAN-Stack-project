@@ -6,11 +6,16 @@ import {RouterModule} from '@angular/router';
 import {PostCreateComponent} from './post-create/post-create.component';
 import {PostListComponent} from './post-list/post-list.component';
 import {AngularMaterialModule} from '../angular-material.module';
+import {PostContentFilterPipe} from './post-content-filter.pipe';
+import {PostTitleFilterPipe} from './posts-title-filter.pipe';
+
 
 @NgModule({
   declarations: [
     PostCreateComponent,
     PostListComponent,
+    PostTitleFilterPipe,
+    PostContentFilterPipe
   ],
   imports: [
     CommonModule,
