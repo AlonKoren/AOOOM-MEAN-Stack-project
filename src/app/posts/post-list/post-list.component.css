@@ -23,3 +23,7 @@ mat-paginator {
   width: 100%;
   box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 }
+
+.spacer{
+  flex: 0.98 1 auto;
+}

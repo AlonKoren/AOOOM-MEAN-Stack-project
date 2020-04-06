@@ -27,6 +27,10 @@ export class PostService {
               id: post._id,
               imagePath: post.imagePath,
               creator: post.creator,
+              userName: post.userName,
+              postDate: new Date(post.postDate),
+              latitude: post.latitude,
+              longitude: post.longitude
             };
           }),
           maxPost: postData.maxPosts,
@@ -54,21 +58,25 @@ export class PostService {
       content: string;
       imagePath: string;
       creator: string;
+      latitude: string;
+      longitude: string
     }>(BACKEND_URL + id);
   }
 
-  addPost(title: string, content: string , image: File) {
+  addPost(title: string, content: string , image: File, latitude: string, longitude: string) {
     const postData = new FormData();
     postData.append('title', title);
     postData.append('content', content);
     postData.append('image', image , title);
+    postData.append('latitude', latitude);
+    postData.append('longitude', longitude);
     this.http.post<{message: string , post: Post}>(BACKEND_URL, postData)
       .subscribe((responseData) => {
         this.router.navigate(['/']);
       }, error => {}, () => {});
   }
 
-  updatePost(id: string , title: string, content: string, image: File | string) {
+  updatePost(id: string , title: string, content: string, image: File | string, latitude: string, longitude: string) {
     let postData: Post | FormData ;
     if (typeof(image) === 'object') {
       postData = new FormData();
@@ -76,8 +84,10 @@ export class PostService {
       postData.append('title', title);
       postData.append('content', content);
       postData.append('image', image , title);
+      postData.append('latitude', latitude);
+      postData.append('latitude', longitude);
     } else {
-      postData = {id, title, content, imagePath: image, creator: null};
+      postData = {id, title, content, imagePath: image, creator: null, userName: null, postDate: null, latitude, longitude};
     }
     this.http.put(BACKEND_URL + id, postData)
       .subscribe((response) => {
@@ -86,5 +96,9 @@ export class PostService {
   }
   deletePost(postId: string) {
     return this.http.delete(BACKEND_URL + postId);
+  }
+
+  newGetAll() {
+    return this.http.get<{ docs: any[] }>(BACKEND_URL + 'all');
   }
 }

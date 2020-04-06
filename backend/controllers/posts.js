@@ -12,6 +12,8 @@ exports.createPost = (req,res,next) => {
     creator: req.userData.userId,
     userName: req.userData.email.split('@')[0],
     postDate: new Date(),
+    latitude: req.body.latitude,
+    longitude: req.body.longitude
   });
   post.save().then(createdPost =>{
     res.status(201).json({
@@ -23,6 +25,8 @@ exports.createPost = (req,res,next) => {
         imagePath: createdPost.imagePath,
         userName: createdPost.userName,
         postDate: createdPost.postDate,
+        latitude: createdPost.latitude,
+        longitude: createdPost.longitude
       }
     });
   })
@@ -47,6 +51,8 @@ exports.updatePost = (req,res,next) => {
     imagePath: imagePath,
     creator: req.userData.userId,
     userName: req.userData.email.split('@')[0],
+    latitude: req.body.latitude,
+    longitude: req.body.longitude
   });
   Post.updateOne({_id: req.params.id, creator: req.userData.userId },post).then(result =>{
     if(result.n > 0) {
@@ -139,4 +145,26 @@ exports.deletePost = (req, res, next) => {
       });
     }
   }).catch(error => {});
+
+  exports.getAllPosts = (req, res, next) => {
+
+    const postQuery = Post.find();
+    let fetchedPosts;
+    postQuery
+      .then(documents => {
+        fetchedPosts = documents;
+        return Post.count();
+      })
+      .then(count => {
+        res.status(200).json({
+          message: "Posts fetched successfully!",
+          posts: fetchedPosts,
+          maxPosts: count
+        });
+      }).catch(error => {
+      res.status(500).json({
+        message: "Fetching posts failed!"
+      });
+    });
+  };
 };

@@ -25,5 +25,13 @@ const postScheme = mongoose.Schema({
     type: Date,
     required: true
   },
+  latitude: {
+    type: String,
+    require: false
+  },
+  longitude: {
+    type: String,
+    require: false
+  }
 });
 module.exports = mongoose.model('Post', postScheme);

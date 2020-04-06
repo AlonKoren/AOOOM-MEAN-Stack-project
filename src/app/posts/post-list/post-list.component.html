@@ -8,8 +8,15 @@
 <mat-accordion multi="true" *ngIf="posts.length > 0 && !isLoading">
   <mat-expansion-panel *ngFor="let post of posts.slice().reverse() | PostTitleFilter:searchTermByTitle | postContentFilter:searchTermByContent">
     <mat-expansion-panel-header>
-      {{post.title}}
+      <h2> {{post.title}}</h2>
+      <span class="spacer"></span>
+      Posted By: {{ post.userName }}
+      <br>
+      Posted on : {{ post.postDate.toLocaleDateString() | date: 'dd/MM/yyyy'}} at {{post.postDate.toLocaleTimeString()}}
     </mat-expansion-panel-header>
+    <mat-panel-description>
+
+    </mat-panel-description>
     <p>{{post.content}}</p>
     <div class="post-image">
       <img [src]="post.imagePath" [alt]="post.title">

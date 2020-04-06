@@ -23,10 +23,17 @@ export class PostCreateComponent implements OnInit, OnDestroy {
   private mode = 'create';
   private postId: string;
   private authStatusSub: Subscription;
+  latitude: string;
+  longitude: string;
 
   constructor(public  postsService: PostService, public route: ActivatedRoute, private authService: AuthService) {}
 
   ngOnInit() {
+    this.getPosition().then(position => {
+      this.latitude = String(position.lat);
+      this.longitude = String(position.lng);
+    });
+
     this.authStatusSub = this.authService
       .getAuthStatusListener()
       .subscribe(authStatus => {
@@ -57,6 +64,10 @@ export class PostCreateComponent implements OnInit, OnDestroy {
             content : postData.content,
             imagePath: postData.imagePath,
             creator: postData.creator,
+            userName: null,
+            postDate: null,
+            latitude: postData.latitude,
+            longitude: postData.longitude
           };
           this.form.setValue({
             title: this.post.title,
@@ -87,15 +98,35 @@ export class PostCreateComponent implements OnInit, OnDestroy {
       return;
     }
     this.isLoading = true;
+    this.getPosition().then(position => {
+      this.latitude = String(position.lat);
+      this.longitude = String(position.lng);
+    });
+
     if (this.mode === 'create') {
-      this.postsService.addPost(this.form.value.title, this.form.value.content, this.form.value.image);
+      this.postsService.addPost(this.form.value.title, this.form.value.content, this.form.value.image, this.latitude, this.longitude);
     } else {
-      this.postsService.updatePost(this.postId, this.form.value.title, this.form.value.content, this.form.value.image);
+      this.postsService.updatePost
+        (this.postId, this.form.value.title, this.form.value.content, this.form.value.image, this.latitude, this.longitude);
     }
     this.form.reset();
   }
 
   ngOnDestroy() {
     this.authStatusSub.unsubscribe();
+  }
+
+  getPosition(): Promise<any> {
+    return new Promise((resolve, reject) => {
+
+      navigator.geolocation.getCurrentPosition(resp => {
+
+          resolve({ lng: resp.coords.longitude, lat: resp.coords.latitude });
+        },
+        err => {
+          resolve({ lng: null, lat: null });
+        });
+    });
+
   }
 }
