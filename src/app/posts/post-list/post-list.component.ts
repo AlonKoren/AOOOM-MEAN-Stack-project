@@ -26,6 +26,7 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   searchTermByTitle: string;
   searchTermByContent: string;
+  searchTermByName: string;
 
   constructor(public postService: PostService, private authService: AuthService) {}
 

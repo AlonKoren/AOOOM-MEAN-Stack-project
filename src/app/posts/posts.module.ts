@@ -8,6 +8,7 @@ import {PostListComponent} from './post-list/post-list.component';
 import {AngularMaterialModule} from '../angular-material.module';
 import {PostContentFilterPipe} from './post-content-filter.pipe';
 import {PostTitleFilterPipe} from './posts-title-filter.pipe';
+import {PostNameFilterPipe} from './post-name-filter.pipe';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {PostTitleFilterPipe} from './posts-title-filter.pipe';
     PostCreateComponent,
     PostListComponent,
     PostTitleFilterPipe,
-    PostContentFilterPipe
+    PostContentFilterPipe,
+    PostNameFilterPipe,
   ],
   imports: [
     CommonModule,
