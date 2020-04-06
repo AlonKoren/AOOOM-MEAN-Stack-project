@@ -144,27 +144,29 @@ exports.deletePost = (req, res, next) => {
         message: "Comment successful!"
       });
     }
-  }).catch(error => {});
-
-  exports.getAllPosts = (req, res, next) => {
-
-    const postQuery = Post.find();
-    let fetchedPosts;
-    postQuery
-      .then(documents => {
-        fetchedPosts = documents;
-        return Post.count();
-      })
-      .then(count => {
-        res.status(200).json({
-          message: "Posts fetched successfully!",
-          posts: fetchedPosts,
-          maxPosts: count
-        });
-      }).catch(error => {
-      res.status(500).json({
-        message: "Fetching posts failed!"
-      });
-    });
-  };
+  }).catch(error => {
+  });
 };
+
+exports.getAllPosts = (req, res, next) => {
+
+  const postQuery = Post.find();
+  let fetchedPosts;
+  postQuery
+    .then(documents => {
+      fetchedPosts = documents;
+      return Post.count();
+    })
+    .then(count => {
+      res.status(200).json({
+        message: "Posts fetched successfully!",
+        posts: fetchedPosts,
+        maxPosts: count
+      });
+    }).catch(error => {
+    res.status(500).json({
+      message: "Fetching posts failed!"
+    });
+  });
+};
+

@@ -13,6 +13,9 @@ import {ErrorInterceptor} from './error-interceptor';
 import {ErrorComponent} from './error/error.component';
 import {CommentsModule} from './comments/comments.module';
 import {WebSocketModule} from './web-socket/web.socket.module';
+import {MapMdoule} from './map/map.mdoule';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
 
 @NgModule({
     declarations: [
@@ -28,7 +31,10 @@ import {WebSocketModule} from './web-socket/web.socket.module';
     AngularMaterialModule,
     PostsModule,
     CommentsModule,
+    MapMdoule,
     WebSocketModule,
+    MatGoogleMapsAutocompleteModule,
+    FlexLayoutModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

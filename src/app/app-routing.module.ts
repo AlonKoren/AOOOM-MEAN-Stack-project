@@ -7,6 +7,7 @@ import {AuthGuard} from './auth/auth.guard';
 import {CommentListComponent} from './comments/comment-list/comment-list.component';
 import {CommentCreateComponent} from './comments/comment-create/comment-create.component';
 import {ChatComponent} from './web-socket/socket-io/chat.component';
+import {MapComponent} from './map/map-google/map.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,7 @@ const routes: Routes = [
   { path: 'comments/edit/:commentId', component: CommentCreateComponent, canActivate: [AuthGuard] },
 
   {path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)},
-
+  { path: 'map', component: MapComponent },
   { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] }
 ];
 

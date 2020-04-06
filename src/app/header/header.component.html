@@ -26,6 +26,9 @@
       <a mat-button routerLink="/create" routerLinkActive="mat-accent">New Post</a>
     </li>
     <li *ngIf="userIsAuthenticated">
+      <a mat-button routerLink="map" routerLinkActive="mat-accent">Posts map</a>
+    </li>
+    <li *ngIf="userIsAuthenticated">
       <a mat-button routerLink="/chat" routerLinkActive="mat-accent">Chat</a>
     </li>
     <li *ngIf="!userIsAuthenticated">
