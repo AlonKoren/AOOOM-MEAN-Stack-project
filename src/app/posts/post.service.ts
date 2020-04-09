@@ -11,13 +11,13 @@ const BACKEND_URL = environment.apiUrl + '/posts/';
 @Injectable({providedIn: 'root'})
 export class PostService {
   private posts: Post[] = [];
-  private postsUpdated = new Subject<{posts: Post[], postCount: number}>();
+  private postsUpdated = new Subject<{posts: Post[], postCount: number, sketchs: any[]}>();
 
   constructor(private http: HttpClient, private router: Router) {}
 
   getPosts(postPerPage: number , currentPage: number) {
     const queryParams = `?pagesize=${postPerPage}&page=${currentPage}`;
-    this.http.get<{message: string , posts: any, maxPosts: number}>(BACKEND_URL + queryParams)
+    this.http.get<{message: string , posts: any, maxPosts: number , sketchs: any[]}>(BACKEND_URL + queryParams)
       .pipe(map((postData) => {
         return {
           posts: postData.posts.map(post => {
@@ -34,6 +34,7 @@ export class PostService {
             };
           }),
           maxPost: postData.maxPosts,
+          sketchs : postData.sketchs,
         };
       }))
       .subscribe((transformedPostData) => {
@@ -42,6 +43,7 @@ export class PostService {
         this.postsUpdated.next({
             posts: [...this.posts],
             postCount: transformedPostData.maxPost,
+            sketchs : transformedPostData.sketchs,
           });
       }, error => {}, () => {});
   }
@@ -100,5 +102,17 @@ export class PostService {
 
   newGetAll() {
     return this.http.get<{ docs: any[] }>(BACKEND_URL + 'all');
+  }
+
+  getGroupByD3() {
+    return this.http.get<{ docs: any[] }>(BACKEND_URL + 'd3groupby');
+  }
+
+  getGroupByD3_2() {
+    return this.http.get<{ docs: any[] }>(BACKEND_URL + 'd3groupby2');
+  }
+
+  getCms() {
+    return this.http.get<{ docs: any[] }>(BACKEND_URL + 'sketch');
   }
 }

@@ -29,6 +29,12 @@
       <a mat-button routerLink="map" routerLinkActive="mat-accent">Posts map</a>
     </li>
     <li *ngIf="userIsAuthenticated">
+      <a mat-button routerLink="d3groupby" routerLinkActive="mat-accent">Who is the most active user</a>
+    </li>
+    <li *ngIf="userIsAuthenticated">
+      <a mat-button routerLink="d3groupby_2" routerLinkActive="mat-accent">If there are identical titles</a>
+    </li>
+    <li *ngIf="userIsAuthenticated">
       <a mat-button routerLink="/chat" routerLinkActive="mat-accent">Chat</a>
     </li>
     <li *ngIf="!userIsAuthenticated">

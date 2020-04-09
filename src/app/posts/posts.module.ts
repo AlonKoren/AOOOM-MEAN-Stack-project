@@ -19,12 +19,12 @@ import {PostNameFilterPipe} from './post-name-filter.pipe';
     PostContentFilterPipe,
     PostNameFilterPipe,
   ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    AngularMaterialModule,
-    RouterModule,
-    FormsModule
-  ]
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        AngularMaterialModule,
+        RouterModule,
+        FormsModule,
+    ]
 })
 export class PostsModule {}

@@ -16,12 +16,18 @@ import {WebSocketModule} from './web-socket/web.socket.module';
 import {MapMdoule} from './map/map.mdoule';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
+import {PiechartDirective} from './d3-graph/piechart.directive';
+import {UserActivityLevelComponent} from './user_activity_level/user_activity_level.component';
+import {DuplicatesInTitlesComponent} from './duplicates_in_titles/duplicates_in_titles.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HeaderComponent,
-        ErrorComponent
+        ErrorComponent,
+        PiechartDirective,
+        UserActivityLevelComponent,
+        DuplicatesInTitlesComponent
     ],
   imports: [
     BrowserModule,

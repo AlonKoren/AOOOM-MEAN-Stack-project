@@ -5,10 +5,12 @@
   <input type="text" class="form-control" placeholder="Search By Content" [(ngModel)]="searchTermByContent"/>
   <br>
   <input type="text" class="form-control" placeholder="Search By Name" [(ngModel)]="searchTermByName"/>
+  <br>
+  <mat-checkbox (click)="onSortList($event)">view by popularity</mat-checkbox>
 </div>
 <br>
 <mat-accordion multi="true" *ngIf="posts.length > 0 && !isLoading">
-  <mat-expansion-panel style="width: 60%" *ngFor="let post of posts.slice().reverse() | PostTitleFilter:searchTermByTitle | postContentFilter:searchTermByContent |  postNameFilter:searchTermByName">
+  <mat-expansion-panel style="width: 60%" *ngFor="let post of posts.slice() | PostTitleFilter:searchTermByTitle | postContentFilter:searchTermByContent |  postNameFilter:searchTermByName">
     <mat-expansion-panel-header style="padding: 4px 24px">
       <h2> {{post.title}}</h2>
       <span class="spacer"></span>
@@ -36,3 +38,7 @@
 </mat-accordion>
 <mat-paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)" *ngIf="posts.length > 0"></mat-paginator>
 <p class=" info-text mat-body-1" *ngIf="posts.length <= 0 && !isLoading">No posts added yet!</p>
+
+<p class="form-control">Current post create: {{curentCreateTimes}} &nbsp;&nbsp; ● &nbsp;&nbsp;  Current post delete: {{currentDeleteTimes}}</p>
+
+<a class="form-control" *ngIf="curentCreateTimes>0 && currentDeleteTimes>0"> &nbsp;&nbsp;Created vs deleted:&nbsp;{{(curentCreateTimes/currentDeleteTimes)*100}}% </a>

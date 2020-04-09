@@ -19,13 +19,17 @@
     "@angular/common": "~9.0.2",
     "@angular/compiler": "~9.0.2",
     "@angular/core": "~9.0.2",
+    "@angular/flex-layout": "latest",
     "@angular/forms": "~9.0.2",
     "@angular/material": "~9.1.0",
     "@angular/platform-browser": "~9.0.2",
     "@angular/platform-browser-dynamic": "~9.0.2",
     "@angular/router": "~9.0.2",
     "bcrypt": "^4.0.1",
+    "bloom-filters": "^0.7.0",
     "body-parser": "^1.19.0",
+    "d3": "^5.15.1",
+    "d3-scale": "latest",
     "debug": "latest",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
@@ -35,8 +39,7 @@
     "rxjs": "~6.5.4",
     "socket.io": "^2.3.0",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.2",
-    "@angular/flex-layout": "latest"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.3",

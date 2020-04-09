@@ -8,6 +8,8 @@ import {CommentListComponent} from './comments/comment-list/comment-list.compone
 import {CommentCreateComponent} from './comments/comment-create/comment-create.component';
 import {ChatComponent} from './web-socket/socket-io/chat.component';
 import {MapComponent} from './map/map-google/map.component';
+import {UserActivityLevelComponent} from './user_activity_level/user_activity_level.component';
+import {DuplicatesInTitlesComponent} from './duplicates_in_titles/duplicates_in_titles.component';
 
 
 const routes: Routes = [
@@ -21,6 +23,10 @@ const routes: Routes = [
 
   {path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)},
   { path: 'map', component: MapComponent },
+
+  { path: 'd3groupby', component: UserActivityLevelComponent },
+  { path: 'd3groupby_2', component: DuplicatesInTitlesComponent },
+
   { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] }
 ];
 

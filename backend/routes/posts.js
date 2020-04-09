@@ -11,6 +11,12 @@ router.post("", checkAuth, extractFile, PostController.createPost);
 
 router.put("/:id", checkAuth, extractFile, PostController.updatePost);
 
+router.get("/sketch", PostController.getCMS);
+
+router.get("/d3groupby", PostController.getpostCreatorD3);
+
+router.get("/d3groupby2", PostController.getpostTitleD3);
+
 router.get("/all",PostController.getAllPosts);
 
 router.get("", PostController.getPosts);

@@ -1,4 +1,6 @@
+const Posts = require('./posts');
 const Comment = require("../models/comment");
+
 
 //creat comment function
 exports.createComment = (req, res, next) => {
@@ -86,6 +88,7 @@ exports.getFilteredComments = (req, res, next) => {
   const pageSize = +req.query.pagesize;
   const currentPage = +req.query.page;
   const commentQuery = Comment.find({postId: req.params.postId});
+  Posts.sketch.update(`post:${req.params.postId}`)
   let fetchedComments;
   if (pageSize && currentPage) {
     commentQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
