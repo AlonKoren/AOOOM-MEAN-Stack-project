@@ -19,11 +19,13 @@ import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/goog
 import {PiechartDirective} from './d3-graph/piechart.directive';
 import {UserActivityLevelComponent} from './user_activity_level/user_activity_level.component';
 import {DuplicatesInTitlesComponent} from './duplicates_in_titles/duplicates_in_titles.component';
+import {FooterComponent} from './footer/footer.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HeaderComponent,
+        FooterComponent,
         ErrorComponent,
         PiechartDirective,
         UserActivityLevelComponent,

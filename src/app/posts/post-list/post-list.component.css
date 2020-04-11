@@ -17,6 +17,7 @@ mat-paginator {
 
 .post-image{
   width: 100%;
+  text-align: center;
 }
 
 .post-image img{
