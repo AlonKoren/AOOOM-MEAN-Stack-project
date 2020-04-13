@@ -10,10 +10,15 @@ import {ChatComponent} from './web-socket/socket-io/chat.component';
 import {MapComponent} from './map/map-google/map.component';
 import {UserActivityLevelComponent} from './user_activity_level/user_activity_level.component';
 import {DuplicatesInTitlesComponent} from './duplicates_in_titles/duplicates_in_titles.component';
+import {HomeComponent} from './home/home.component';
+import {AboutComponent} from './about/about.component';
 
 
 const routes: Routes = [
-  {path: '', component: PostListComponent},
+  {path: '', component: HomeComponent},
+  {path: 'about', component: AboutComponent},
+
+  {path: 'posts', component: PostListComponent},
   {path: 'create', component: PostCreateComponent, canActivate: [AuthGuard]},
   {path: 'edit/:postId', component: PostCreateComponent, canActivate: [AuthGuard]},
 

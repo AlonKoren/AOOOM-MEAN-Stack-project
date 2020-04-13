@@ -7,55 +7,48 @@ box-shadow: rgba(0, 0, 0, 0.25) 0px 3px 11px 0px !important;
     border-style: solid !important;
     border-width: 0px !important;">
 
-  <img src="https://dewey.tailorbrands.com/production/brand_version_mockup_image/618/2855495618_16a50370-3144-4550-b49e-2efa2c11ee86.png?cb=1586517255" style="width: 13%;">
+  <img src="../../assets/images/aooom_logo.png" style="width: 13%;">
 
-<mat-toolbar color="primary">
-    <span>
-      <a>AOOOM&nbsp;&nbsp;&nbsp;&nbsp;</a>
-    </span>
-  <ul>
-    <li>
-      <a mat-button routerLink="/">Posts List</a>
-    </li>
-  </ul>
-
-<!--   <span *ngIf="userIsAuthenticated">-->
-<!--      AOOOM-->
-<!--    </span>-->
-<!--  <span class="spacer"></span>-->
-<!--  <span>-->
-<!--      <a routerLink="/">Posts List</a>-->
-<!--    </span>-->
-
-<!--  <span>-->
-<!--    <a routerLink="/">AOOOM</a>-->
-<!--  </span>-->
-  <span class="spacer"></span>
-  <ul>
-    <li *ngIf="userIsAuthenticated">
-      <a mat-button routerLink="/create" routerLinkActive="mat-accent">New Post</a>
-    </li>
-    <li *ngIf="userIsAuthenticated">
-      <a mat-button routerLink="map" routerLinkActive="mat-accent">Posts map</a>
-    </li>
-    <li *ngIf="userIsAuthenticated">
-      <a mat-button routerLink="d3groupby" routerLinkActive="mat-accent">Who is the most active user</a>
-    </li>
-    <li *ngIf="userIsAuthenticated">
-      <a mat-button routerLink="d3groupby_2" routerLinkActive="mat-accent">If there are identical titles</a>
-    </li>
-    <li *ngIf="userIsAuthenticated">
-      <a mat-button routerLink="/chat" routerLinkActive="mat-accent">Chat</a>
-    </li>
-    <li *ngIf="!userIsAuthenticated">
-      <a mat-button routerLink="/auth/login" routerLinkActive="mat-accent">Login</a>
-    </li>
-    <li *ngIf="!userIsAuthenticated">
-      <a mat-button routerLink="/auth/signup" routerLinkActive="mat-accent">Sign Up</a>
-    </li>
-    <li *ngIf="userIsAuthenticated">
-      <button mat-button (click)="onLogout()">Log Out</button>
-    </li>
-  </ul>
-</mat-toolbar>
+  <nav>
+    <mat-toolbar color="primary">
+        <span>
+          <a routerLink="/">AOOOM&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </span>
+      <ul>
+        <li>
+          <a mat-button routerLink="/about" routerLinkActive="mat-accent">About</a>
+        </li>
+        <li>
+          <a mat-button routerLink="/posts" routerLinkActive="mat-accent">Posts List</a>
+        </li>
+      </ul>
+      <span class="spacer"></span>
+      <ul>
+        <li *ngIf="userIsAuthenticated">
+          <a mat-button routerLink="/create" routerLinkActive="mat-accent">New Post</a>
+        </li>
+        <li *ngIf="userIsAuthenticated">
+          <a mat-button routerLink="map" routerLinkActive="mat-accent">Posts map</a>
+        </li>
+        <li *ngIf="userIsAuthenticated">
+          <a mat-button routerLink="d3groupby" routerLinkActive="mat-accent">Who is the most active user</a>
+        </li>
+        <li *ngIf="userIsAuthenticated">
+          <a mat-button routerLink="d3groupby_2" routerLinkActive="mat-accent">If there are identical titles</a>
+        </li>
+        <li *ngIf="userIsAuthenticated">
+          <a mat-button routerLink="/chat" routerLinkActive="mat-accent">Chat</a>
+        </li>
+        <li *ngIf="!userIsAuthenticated">
+          <a mat-button routerLink="/auth/login" routerLinkActive="mat-accent">Login</a>
+        </li>
+        <li *ngIf="!userIsAuthenticated">
+          <a mat-button routerLink="/auth/signup" routerLinkActive="mat-accent">Sign Up</a>
+        </li>
+        <li *ngIf="userIsAuthenticated">
+          <button mat-button (click)="onLogout()">Log Out</button>
+        </li>
+      </ul>
+    </mat-toolbar>
+  </nav>
 </header>
