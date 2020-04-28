@@ -27,10 +27,10 @@ const routes: Routes = [
   { path: 'comments/edit/:commentId', component: CommentCreateComponent, canActivate: [AuthGuard] },
 
   {path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)},
-  { path: 'map', component: MapComponent },
+  { path: 'map', component: MapComponent, canActivate: [AuthGuard]},
 
-  { path: 'd3groupby', component: UserActivityLevelComponent },
-  { path: 'd3groupby_2', component: DuplicatesInTitlesComponent },
+  { path: 'd3groupby', component: UserActivityLevelComponent, canActivate: [AuthGuard] },
+  { path: 'd3groupby_2', component: DuplicatesInTitlesComponent, canActivate: [AuthGuard] },
 
   { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] }
 ];

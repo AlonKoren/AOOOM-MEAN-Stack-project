@@ -27,9 +27,9 @@
     </div>
     <mat-action-row>
 
-      <a mat-button color="primary" [routerLink]="['comments/list/', post.id]">Show Comments</a>
+      <a mat-button color="primary" [routerLink]="['../comments/list/', post.id]">Show Comments</a>
 
-      <a mat-button color="primary" [routerLink]="['comments/create/', post.id]" *ngIf="userIsAuthenticated">Comment</a>
+      <a mat-button color="primary" [routerLink]="['../comments/create/', post.id]" *ngIf="userIsAuthenticated">Comment</a>
 
       <a mat-button color="primary" [routerLink]="['/edit', post.id]" *ngIf="userIsAuthenticated && userId === post.creator">EDIT</a>
       <button mat-button color="warn" (click)="onDelete(post.id)" *ngIf="userIsAuthenticated && userId === post.creator">DELETE</button>

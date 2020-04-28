@@ -94,6 +94,10 @@ export class PostCreateComponent implements OnInit, OnDestroy {
   }
 
   onSavePost() {
+    if (!this.authService.isLogin()) {
+      window.location.reload();
+      return;
+    }
     if (this.form.invalid) {
       return;
     }

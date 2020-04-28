@@ -48,3 +48,5 @@ Thumbs.db
 backend/images/
 
 src/environments/
+
+nodemon.json

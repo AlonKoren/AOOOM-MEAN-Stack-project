@@ -91,6 +91,10 @@ export class PostListComponent implements OnInit, OnDestroy {
   }
 
   onDelete(postId: string) {
+    if (!this.authService.isLogin()) {
+      window.location.reload();
+      return;
+    }
     this.isLoading = true;
     this.postService.deletePost(postId).subscribe(() => {
       this.postService.getPosts(this.postsPerPage, this.currentPage);

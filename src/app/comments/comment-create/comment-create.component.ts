@@ -66,6 +66,10 @@ export class CommentCreateComponent implements OnInit, OnDestroy {
   }
 
   onSaveComment() {
+    if (!this.authService.isLogin()) {
+      window.location.reload();
+      return;
+    }
     if (this.form.invalid) {
       return;
     }

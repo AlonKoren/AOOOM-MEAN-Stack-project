@@ -142,4 +142,8 @@ export class AuthService {
     }
     return this.email.split('@')[0];
   }
+
+  isLogin() {
+    return this.getAuthData() != null;
+  }
 }

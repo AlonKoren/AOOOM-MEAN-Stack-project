@@ -1,31 +1,49 @@
 const Posts = require('./posts');
+const Post = require('../models/post');
 const Comment = require("../models/comment");
 
 
 //creat comment function
 exports.createComment = (req, res, next) => {
-  const url = req.protocol + "://" + req.get("host");
-  const comment = new Comment({
-    postId: req.body.postId,
-    content: req.body.content,
-    creator: req.userData.userId,
-    userName: req.userData.email.split('@')[0],
-    commentDate: new Date()
-  });
-  comment.save().then(createdComment => {
-      res.status(201).json({
-        message: "Comment added successfully",
-        comment: {
-          ...createdComment,
-          id: createdComment._id
-        }
-      });
-    })
-    .catch(error => {
+  // const url = req.protocol + "://" + req.get("host");
+  Post.exists({ _id: req.body.postId}, function(err, result) {
+    if (err) {
+      console.log(err);
       res.status(500).json({
         message: "Creating a comment failed!"
       });
-    });
+    } else {
+      if (result === true){
+        console.log("Post exist");
+        const comment = new Comment({
+          postId: req.body.postId,
+          content: req.body.content,
+          creator: req.userData.userId,
+          userName: req.userData.email.split('@')[0],
+          commentDate: new Date()
+        });
+        comment.save().then(createdComment => {
+          res.status(201).json({
+            message: "Comment added successfully",
+            comment: {
+              ...createdComment,
+              id: createdComment._id
+            }
+          });
+        })
+          .catch(error => {
+            res.status(500).json({
+              message: "Creating a comment failed!"
+            });
+          });
+      }else {
+        console.log("Post NOT exist");
+        res.status(500).json({
+          message: "Creating a comment failed!"
+        });
+      }
+    }
+  });
 };
 
 //update comment function
